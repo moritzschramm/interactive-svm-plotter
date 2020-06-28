@@ -55,10 +55,10 @@ def remove_point(x, y):
         i = i +1
 
     if not index == -1:
-        if inData == 'p':
+        if inData == 'p' and len(Pdata) > 0:
             Pdata = np.delete(Pdata, index, axis=0)
             print(Pdata)
-        elif inData == 'n':
+        elif inData == 'n' and len(Ndata) > 0:
             Ndata = np.delete(Ndata, index, axis=0)
 
 
@@ -67,7 +67,7 @@ def remove_point(x, y):
 
 
 def update():
-    global scP, scN, fig, clf
+    global scSV, scP, scN, fig, clf
 
     # update classifier
     x_train = np.append(Pdata, Ndata, axis=0)
@@ -79,6 +79,7 @@ def update():
     p = np.hsplit(Pdata, 2)
     n = np.hsplit(Ndata, 2)
 
+    scSV.set_offsets(np.c_[clf.support_vectors_[:, 0], clf.support_vectors_[:, 1]])
     scP.set_offsets(np.c_[p[0],p[1]])
     scN.set_offsets(np.c_[n[0], n[1]])
     fig.canvas.draw_idle()
@@ -124,6 +125,8 @@ n = np.hsplit(Ndata, 2)
 plt.ion()
 fig, ax = plt.subplots()
 x, y = [],[]
+
+scSV = ax.scatter(clf.support_vectors_[:, 0], clf.support_vectors_[:, 1], s=80, facecolors="none", zorder=10, edgecolors="k")
 # scatter plot for class P
 scP = ax.scatter(p[0],p[1], color='b')
 # scatter plot for class N
