@@ -1,5 +1,6 @@
 # Interactive SVM plotter
 ## Requirements
+- python3
 - matplotlib
 - numpy
 - sklearn
