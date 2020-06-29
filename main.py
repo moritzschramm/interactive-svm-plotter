@@ -40,7 +40,7 @@ def remove_point(x, y):
         if dist < minDist:
             inData = 'p'
             minDist = dist
-            if dist < 0.2:
+            if dist < 0.1:
                 index = i
         i = i +1
 
@@ -50,14 +50,13 @@ def remove_point(x, y):
         if dist < minDist:
             inData = 'n'
             minDist = dist
-            if dist < 0.2:
+            if dist < 0.1:
                 index = i
         i = i +1
 
     if not index == -1:
         if inData == 'p' and len(Pdata) > 0:
             Pdata = np.delete(Pdata, index, axis=0)
-            print(Pdata)
         elif inData == 'n' and len(Ndata) > 0:
             Ndata = np.delete(Ndata, index, axis=0)
 
