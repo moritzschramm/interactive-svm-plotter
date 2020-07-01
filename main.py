@@ -133,20 +133,17 @@ fig, ax = plt.subplots()
 x, y = [],[]
 
 # highlight support vectors
-scSV = ax.scatter(clf.support_vectors_[:, 0], clf.support_vectors_[:, 1], s=100, facecolors="none", zorder=10, edgecolors="lime")
+scSV = ax.scatter(clf.support_vectors_[:, 0], clf.support_vectors_[:, 1], s=100, zorder=10, edgecolors="k", facecolors="w")
 # scatter plot for class P
-scP = ax.scatter(p[0],p[1], color='b')
+scP = ax.scatter(p[0],p[1], color='b', s=40, zorder=50)
 # scatter plot for class N
-scN = ax.scatter(n[0],n[1], color='r')
+scN = ax.scatter(n[0],n[1], color='r', s=40, zorder=50)
 
 plt.xlim(minLim, maxLim)
 plt.ylim(minLim, maxLim)
 
-plt.xlabel('x-axis')
-plt.ylabel('y-axis')
 
 draw_decision_boundary()
 
-plt.title('Interactive SVM')
 plt.connect('button_press_event', onclick) # click listener
 plt.show(block=True)    # prevent window from closing immediately
